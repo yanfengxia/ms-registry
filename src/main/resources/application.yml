@@ -1,0 +1,26 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+server:
+  port: 8761
+
+
+spring:
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1
+  application:
+    name: ms-registry
+
+logging:
+  file:
+    name: ${LOG_URL:/var/log/ms/ms-registry.log}
+    max-history: ${LOG_RETENTION_MAX_DAYS:14}
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss}[%-5level][%t][%X{traceId}|%X{spanId}][%X{tid}][%c{1.}] %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss}[%-5level][%t][%X{traceId}|%X{spanId}][%X{tid}][%c{1.}] %msg%n"
+    level: ${LOG_LEVEL:DEBUG}
